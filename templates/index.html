@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Flask App - Todo List</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+</nav>
+<div class="container my-4">
+
+    <form action="/" method="post">
+        <h2>Add a Todo</h2>
+      <div class="mb-3">
+        <label for="todoTitle" class="form-label">Todo Title</label>
+        <input type="text" class="form-control" id="todoTitle" name="title" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="todoDescription" class="form-label">Description</label>
+        <input type="text" class="form-control" id="todoDescription" name="description">
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+<div class="container my-4">
+    <table class="table">
+        <h2>Your Todos</h2>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for todo in allTodo %}
+    <tr>
+      <th scope="row">{{ loop.index }}</th>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.description }}</td>
+      <td>{{ todo.date_created }}</td>
+    <td>
+        <a href="/delete/{{ todo.id }}" type="button" class="btn btn-danger">Delete</a>
+    </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
